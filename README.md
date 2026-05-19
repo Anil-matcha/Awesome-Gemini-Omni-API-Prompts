@@ -8,7 +8,7 @@ A curated collection of high-quality prompts and patterns for **Gemini Omni** �
 
 Whether you're building a video generation app, exploring the Gemini API, or chasing cleaner prompt patterns, you'll find ready-to-use prompts here that unlock Gemini Omni's full potential.
 
-Join the discussion: https://www.reddit.com/r/GeminiOmni/
+Join the discussion: https://www.reddit.com/r/GeminiOmniAI/
 
 > **Want to use Gemini Omni without a Google account?** Try **[MuAPI](https://muapi.ai)** — a hosted media API that gives you Gemini Omni text-to-video, image-to-video, and reference-based remixing with a simple REST call. [Get your API key →](https://muapi.ai)
 
