@@ -15,15 +15,42 @@ Join the discussion: https://www.reddit.com/r/GeminiOmniAI/
 
 > **API access:** All prompts work with **[MuAPI](https://muapi.ai/gemini-omni)** — a hosted media API that gives you Gemini Omni text-to-video, image-to-video, and video-edit with a simple REST call. [Get your API key →](https://muapi.ai)
 
+```bash
+pip install gemini-omni-api
+```
+
 ```python
 from gemini_omni_api import GeminiOmniAPI
 
 api = GeminiOmniAPI(api_key="your-muapi-key")
+
+# ── Text-to-Video ─────────────────────────────────────────────────────────────
 job = api.text_to_video(
-    prompt="<paste any prompt from this list>",
+    prompt="<paste any T2V prompt from this list>",
     duration=8,
     aspect_ratio="16:9",
 )
+
+# ── Image-to-Video ────────────────────────────────────────────────────────────
+image_url = api.upload_file("reference.png")   # upload local file → public URL
+job = api.image_to_video(
+    prompt="<paste any I2V prompt from this list>",
+    image_urls=[image_url],   # 1–7 reference images, each ≤20 MB
+    duration=6,
+    aspect_ratio="9:16",
+)
+
+# ── Video Edit (V2V) ──────────────────────────────────────────────────────────
+video_url = api.upload_file("source_clip.mp4")
+job = api.video_edit(
+    prompt="<paste any video-edit prompt from this list>",
+    video_url=video_url,
+    trim_start=0,
+    trim_end=8,               # max 10 s window; source clip max 30 s
+    duration=8,
+    aspect_ratio="16:9",
+)
+
 result = api.wait_for_completion(job["request_id"])
 print(result["outputs"])
 ```
@@ -53,6 +80,7 @@ print(result["outputs"])
 - [Anime & Stylized Animation](#anime--stylized-animation)
 - [Scientific & Educational Visualization](#scientific--educational-visualization)
 - [Action, Combat & VFX Sequences](#action-combat--vfx-sequences)
+- [Video Edit (Restyle & Remix)](#video-edit-restyle--remix)
 - [Conversational Edits & Remixes](#conversational-edits--remixes)
 - [Audio-Driven & Lip-Sync](#audio-driven--lip-sync)
 - [Resources & API Docs](#resources--api-docs)
@@ -416,6 +444,86 @@ Use the attached character as the caster. They stand in a stone amphitheater, ra
 
 ---
 
+## Video Edit (Restyle & Remix)
+
+Provide a source clip (`video_url`) and optionally reference images (`image_urls`) — Gemini Omni rewrites the scene while preserving the original motion and timing. Source clip: max 30 s, 100 MB. Trim window: max 10 s.
+
+**API call:**
+```python
+video_url = api.upload_file("source_clip.mp4")
+job = api.video_edit(
+    prompt="<prompt below>",
+    video_url=video_url,
+    trim_start=0,
+    trim_end=8,
+    duration=8,
+    aspect_ratio="16:9",
+)
+```
+
+### Studio Ghibli Restyle
+
+**Prompt:**
+```
+Restyle the entire clip as a hand-drawn Studio Ghibli animation. Preserve the original camera motion and timing exactly. Convert all textures to soft watercolor washes, add gentle cel-shaded outlines, sky becomes a painted pastel gradient, any characters take on Ghibli proportions and large expressive eyes. Keep the scene's emotional tone.
+```
+
+---
+
+### Season Swap — Summer to Winter
+
+**Prompt:**
+```
+Change the season to deep winter without altering any camera movement or subject motion. Replace all foliage with snow-covered bare branches, add a thin layer of snow on every horizontal surface, breath mist visible on exhale, overcast diffuse light replacing direct sun, desaturated cool color grade. Keep all characters and objects identical.
+```
+
+---
+
+### Cinematic Color Regrade — Teal & Orange
+
+**Prompt:**
+```
+Apply a professional teal-and-orange cinematic color grade to the entire clip. Push shadows toward teal-green, warm skin tones and highlights toward amber-orange, reduce overall saturation by 15%, add subtle film grain and very slight vignette. Do not alter timing, framing, or subject motion.
+```
+
+---
+
+### Era Transfer — Modern to 1970s Film
+
+**Prompt:**
+```
+Re-render the clip as if shot on 16mm film in 1975. Add heavy film grain, faded color with lifted blacks, slight magenta-green color shift, occasional light leak on the right edge, soft focus halation around bright areas, and a very subtle flicker on brightness. Preserve all motion and action exactly.
+```
+
+---
+
+### Environment Swap — Interior to Rooftop
+
+**Prompt:**
+```
+Keep the subject and all their motion identical but replace the background environment with a sunlit urban rooftop at golden hour. City skyline visible in the background, warm directional rim light matching the new environment falling on the subject, soft atmospheric haze. Seamless integration — no compositing artifacts.
+```
+
+---
+
+### Slow-Motion Remix
+
+**Prompt:**
+```
+Apply a 2× slow-motion effect to the entire clip. Add subtle motion blur on fast-moving elements, slightly boost color saturation to compensate for the reduced temporal energy, keep the first and last frames as freeze-frame holds for 0.5 s each. Audio pacing should match the new speed.
+```
+
+---
+
+### Add Weather — Rain on a Dry Scene
+
+**Prompt:**
+```
+Add heavy rainfall to the existing scene without altering any subject motion or framing. Streaks of rain fall at a 10° angle in the foreground and midground, puddles form on the ground and show ripple rings, wet sheen on all surfaces, slightly desaturate and cool the color temperature by 500K. Rain should look photorealistic, not composited.
+```
+
+---
+
 ## Conversational Edits & Remixes
 
 Google Gemini Omni's killer feature is chat-style iterative editing. Use these as follow-up prompts after a first generation.
@@ -517,7 +625,15 @@ Use the attached character. Generate a perfectly looped 4-second dance clip sync
 
 ## Use Google Gemini Omni via MuAPI
 
-[MuAPI](https://muapi.ai) provides the Google Gemini Omni API as a hosted REST service — no extra account required.
+[MuAPI](https://muapi.ai) provides all three Gemini Omni generation modes — **text-to-video**, **image-to-video**, and **video-edit** — as a hosted REST service. No extra account required beyond an API key.
+
+| Mode | Endpoint | Key inputs |
+|------|----------|------------|
+| Text-to-Video | `POST /gemini-omni-text-to-video` | `prompt` |
+| Image-to-Video | `POST /gemini-omni-image-to-video` | `prompt`, `image_urls` (1–7) |
+| Video Edit | `POST /gemini-omni-video-edit` | `prompt`, `video_url` and/or `image_urls` |
+
+All modes return `{"request_id": "..."}`. Poll `GET /predictions/{request_id}/result` until `status == "completed"`.
 
 ### Installation
 
