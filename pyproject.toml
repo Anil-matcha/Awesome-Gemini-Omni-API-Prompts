@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "wan-3-api"
+version = "0.1.0"
+description = "Python wrapper for Wan 3.0-compatible AI video generation APIs."
+readme = "README.md"
+requires-python = ">=3.9"
+authors = [{ name = "Anil Matcha" }]
+license = { text = "MIT" }
+classifiers = [
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+]
+dependencies = ["requests>=2.28", "python-dotenv>=1.0", "mcp[cli]>=1.0"]
+
+[tool.setuptools]
+py-modules = ["wan_api", "mcp_server"]
