@@ -6,6 +6,16 @@
 
 A focused Python SDK and MCP server for Wan 3.0-compatible AI video-generation APIs. It supports text-to-video, image-to-video, multimodal reference-to-video, file upload, and asynchronous job polling.
 
+## Related Projects
+
+- [awesome-ai-video-models](https://github.com/Anil-matcha/awesome-ai-video-models) — compare AI video models by API, price, and speed.
+- [Open-Generative-AI](https://github.com/Anil-matcha/Open-Generative-AI) — open-source AI media studio for image and video workflows.
+- [Seedance-2-API](https://github.com/Anil-matcha/Seedance-2-API) — Python SDK for ByteDance Seedance video generation.
+- [Veo-4-API](https://github.com/Anil-matcha/Veo-4-API) — Python SDK for Google Veo AI video generation.
+- [Flux-3-Dev-API](https://github.com/Anil-matcha/Flux-3-Dev-API) — Python SDK for FLUX 3 image and video generation.
+- [Generative-Media-Skills](https://github.com/SamurAIGPT/Generative-Media-Skills) — agent-ready skills for automated media workflows.
+- [muapi-cli](https://github.com/SamurAIGPT/muapi-cli) — command-line access to MuAPI image, video, and audio models.
+
 ## Install
 
 ```bash
