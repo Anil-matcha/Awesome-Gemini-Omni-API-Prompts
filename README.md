@@ -70,6 +70,7 @@ print(result["outputs"])
 - [Generative-Media-Skills](https://github.com/SamurAIGPT/Generative-Media-Skills) — Run these prompts as AI agent skills in Gemini CLI, Claude Code, and Cursor
 - [muapi-cli](https://github.com/SamurAIGPT/muapi-cli) — Run Gemini Omni via MuAPI from the terminal
 
+- [awesome-gemini-4-pro](https://github.com/Anil-matcha/awesome-gemini-4-pro) — Evidence-led use cases and evaluation notes for the rumored next Gemini Pro model.
 - [Awesome Claude Fable 5](https://github.com/Anil-matcha/awesome-claude-fable-5) — Curated real-world use cases, tutorials, and benchmarks for Claude Fable 5 — access exclusively via MuAPI
 
 ## Why the Gemini Omni API?
