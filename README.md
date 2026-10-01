@@ -67,7 +67,7 @@ print(result["outputs"])
 
 - [Gemini-Omni-1.1-Flash-API](https://github.com/Anil-matcha/Gemini-Omni-1.1-Flash-API) — Python SDK/MCP server for Google's newly announced Gemini Omni 1.1 Flash update
 - [gemini-omni-comfyui](https://github.com/Anil-matcha/gemini-omni-comfyui) — ComfyUI custom nodes for Gemini Omni via MuAPI
-- [Generative-Media-Skills](https://github.com/SamurAIGPT/Generative-Media-Skills) — Run these prompts as AI agent skills in Gemini CLI, Claude Code, and Cursor
+- [muapi-skills](https://github.com/SamurAIGPT/muapi-skills) — Run these prompts as AI agent skills in Gemini CLI, Claude Code, and Cursor
 - [muapi-cli](https://github.com/SamurAIGPT/muapi-cli) — Run Gemini Omni via MuAPI from the terminal
 
 - [awesome-gemini-4-pro](https://github.com/Anil-matcha/awesome-gemini-4-pro) — Evidence-led use cases and evaluation notes for the rumored next Gemini Pro model.
